@@ -13,11 +13,17 @@ def get_count_characters(text:str):
 
     return char_dict
 
-def get_sorted_characters(char_counts):
-    count_dicts = []
-    
-    for key, value in char_counts.items():
-        count_dicts.append({"char": key, "num": value})
 
-    count_dicts.sort(key=lambda dict: dict["num"], reverse=True)
-    return count_dicts
+def sort_on(char_count:tuple[str, int]) -> int:
+    return char_count[1]
+
+
+def char_dict_to_sorted_list(char_dict:dict[str, int]) -> list[tuple[str, int]]:
+    char_counts = []
+
+    for char, count in char_dict.items():
+        char_counts.append((char, count))
+
+    sorted_counts = sorted(char_counts, key=sort_on, reverse=True)
+    return sorted_counts
+
